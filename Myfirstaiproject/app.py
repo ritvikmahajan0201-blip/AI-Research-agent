@@ -38,7 +38,7 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, handle_t
 user_input_query = st.text_input("HI What Can I Help You with Today?",placeholder="Please Enter Your Query")
 
 
-if st.button("Submit Query",icon = '>'):
+if st.button("Submit Query"):
     if user_input_query:
         st.write("Query Submitted")
         with st.spinner("Researching..."):
