@@ -27,7 +27,7 @@ Autonomous Logic: Uses LangChain's reasoning capabilities to decide which tool t
 ⚙️ Setup & Installation
 1) Clone Repository
     Run the following command in the terminal: git clone https://github.com/your-username/ai-research-agent.git 
-    cd ai-research-agent
+    cd Myfirstaiproject
 
 2) Install Dependencies
     Run the following command: 
@@ -38,7 +38,7 @@ Autonomous Logic: Uses LangChain's reasoning capabilities to decide which tool t
          GROQ_API_KEY=""
 
 4) Run the agent using the following command
-   python .\main.py
+   uv run --active streamlit run app.py 
    
 
 🔧 Tools Included
