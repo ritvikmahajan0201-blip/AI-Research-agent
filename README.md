@@ -35,7 +35,7 @@ Autonomous Logic: Uses LangChain's reasoning capabilities to decide which tool t
 
 3) Configure Environment Variables
     Create a .env file and add the api key for the Groq llm:
-         GROQ_API_KEY=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
+         GROQ_API_KEY=""
 
 4) Run the agent using the following command
    python .\main.py
