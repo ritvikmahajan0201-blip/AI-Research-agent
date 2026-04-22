@@ -1,56 +1,102 @@
-Python AI Research Agent
+# 🤖 AI Research Agent
 
-high-speed, autonomous research assistant built with **Langchain**, **Groq**, and **Rich**. This agent leverages the **Llama-3.3-70b-versatile** model to perform real-time internet searches and deep-dive Wikipedia lookups.
+A high-speed, autonomous research assistant built using **LangChain**, **Groq**, and **Python**.
+This agent performs real-time web searches and structured knowledge retrieval.
 
+---
 
-🚀 Features
-Ultra-Fast Inference: Powered by Groq's LPU (Language Processing Unit) for near-instant responses.
+## 🚀 Features
 
-Dual-Layer Research: Combines DuckDuckGo for current events/web search and Wikipedia for structured factual data.
+* ⚡ **Ultra-Fast Inference**
+  Powered by Groq’s LPU for near-instant responses
 
-Autonomous Logic: Uses LangChain's reasoning capabilities to decide which tool to use for a specific query.
+* 🔍 **Dual-Layer Research**
 
+  * DuckDuckGo → real-time web data
+  * Wikipedia → structured knowledge
 
-🛠️ Tech Stack
-**LLM MODEL** : llama-3.3-70b-versatile(via Groq)
-**FrameWork** : LangChain
-**Tools**: DuckDuckGo Search, Wikipedia API
-**Environment**: Python 3.10+
+* 🧠 **Autonomous Tool Selection**
+  Uses LangChain reasoning to decide which tool to use
 
-📂 Project Structure
----> Main.py  # Core agent logic and LLM initialization
----> Tools.py  # Custom tool definitions (Search, Wiki, etc.)
----> .env # Environment variables (API Keys)
----> requirements.txt # Python dependencies
+---
 
+## 🛠️ Tech Stack
 
-⚙️ Setup & Installation
-1) Clone Repository
-    Run the following command in the terminal: git clone https://github.com/your-username/ai-research-agent.git 
-    cd Myfirstaiproject
+* **LLM**: `llama-3.3-70b-versatile` (via Groq)
+* **Framework**: LangChain
+* **Tools**: DuckDuckGo, Wikipedia API
+* **Language**: Python 3.10+
 
-2) Install Dependencies
-    Run the following command: 
-          pip install -r requirements.txt
+---
 
-3) Configure Environment Variables
-    Create a .env file and add the api key for the Groq llm:
-         GROQ_API_KEY=""
+## 📂 Project Structure
 
-4) Run the agent using the following command
-   uv run --active streamlit run app.py 
-   
+```
+.
+├── main.py              # Core agent logic
+├── Tools.py             # Tool definitions
+├── .env                 # API keys (not committed)
+├── requirements.txt     # Dependencies
+```
 
-🔧 Tools Included
+---
 
---> DuckDuckGo:	Searches the live web for current news and articles.
---> Wikipedia:	Retrieves summarized factual data and history.
+## ⚙️ Setup & Installation
 
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/ritvikmahajan0201-blip/AI-Research-agent.git
+cd AI-Research-agent
+```
 
+---
 
+### 2. Install dependencies
 
+```bash
+pip install -r requirements.txt
+```
 
+---
 
+### 3. Configure environment variables
 
+Create a `.env` file:
 
+```env
+GROQ_API_KEY=your_api_key_here
+```
+
+---
+
+### 4. Run the agent
+
+```bash
+python main.py
+```
+
+---
+
+## 🔧 Tools Included
+
+* 🌐 **DuckDuckGo** → real-time web search
+* 📚 **Wikipedia** → factual summaries
+
+---
+
+## ⚠️ Notes
+
+* Do NOT expose your API keys
+* Recommended Python version: **3.10 / 3.11**
+* Ensure all dependencies are installed properly
+
+---
+
+## 📌 Future Improvements
+
+* Streamlit UI integration
+* Memory-enabled agent
+* Multi-agent research system
+
+---
