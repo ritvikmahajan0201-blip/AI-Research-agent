@@ -1,13 +1,19 @@
 import streamlit as st
+from duckduckgo_search import DDGS
+from st_image_button import st_image_button
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from pydantic.v1 import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_classic.agents import create_tool_calling_agent,AgentExecutor
-from langchain_classic import hub
 from Tools import search_tool, wiki_tool
+from duckduckgo_search import DDGS
+
 load_dotenv()
 
+def fetch_images(query):
+    with DDGS() as ddgs:
+        results = ddgs.images(query, max_results=10)
+        return [r["image"] for r in results]
 
 st.title("AI Research Agent")
 st.header("Welcome User")
@@ -25,6 +31,9 @@ prompt = ChatPromptTemplate.from_messages([
     3. Always include a 'Sources and Citations' section at the end.
     4. Use professional, academic language.
     5. Aim for a minimum of 500 words. Do not stop until the topic is covered in depth.
+    6. When user asks for difference based queries always generate the response in tabular format and not in paragraphs.
+    7. Ask a follow up question related to the query or if user need anything else.
+     
      
     """),
     ("placeholder", "{chat_history}"),
@@ -35,10 +44,18 @@ prompt = ChatPromptTemplate.from_messages([
 agent = create_tool_calling_agent(llm=llm, prompt=prompt, tools=tools)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, handle_tool_errors=True)
 
-user_input_query = st.text_input("HI What Can I Help You with Today?",placeholder="Please Enter Your Query")
+col1,col2 = st.columns([8,1],vertical_alignment="top")
+
+with col1:
+    user_input_query = st.text_input("HI What Can I Help You with Today?",placeholder="Please Enter Your Query")
 
 
-if st.button("Submit Query"):
+with col2:
+    st.write("")
+    st.write("")
+    submit_button = st_image_button(image=r"C:\Users\ritvi\Downloads\right-chevron.png",width=35)
+
+with col1:
     if user_input_query:
         st.write("Query Submitted")
         with st.spinner("Researching..."):
@@ -48,11 +65,16 @@ if st.button("Submit Query"):
                                                     "tool_names": [t.name for t in tools], 
                                                     "agent_scratchpad": ""})
                 final_text = raw_response["output"]
-
                 st.success("Research Completed")
                 st.subheader(f"Topic: {user_input_query}")
                 st.info(final_text)
 
+                with col2:
+                    images = fetch_images(user_input_query)
+                    st.subheader("Images:")
+                    for img in images:
+                        st.image(img)
+                    
             except Exception as e:
                 print(f"An Error Occured: {e}")
     else:
